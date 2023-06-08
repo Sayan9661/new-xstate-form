@@ -1,4 +1,4 @@
-## This is a Multistep Form as per the requirents.
+## This is a Multistep Form as per the requirements.
 
 
 Assignment: Build a multi-step form using React and XState.<br> 
