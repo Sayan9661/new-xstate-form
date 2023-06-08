@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch"
   },
   "dependencies": {
+    "@testing-library/user-event": "^14.4.3",
     "@xstate/react": "^3.2.2",
     "autoprefixer": "10.4.14",
     "eslint": "8.42.0",
@@ -20,5 +22,12 @@
     "react-hook-form": "^7.44.3",
     "tailwindcss": "3.3.2",
     "xstate": "^4.37.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "user-event": "^4.0.0"
   }
 }

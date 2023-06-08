@@ -5,8 +5,8 @@
 
 import React from 'react';
 import { useMachine } from '@xstate/react';
-import formMachine from '/machines/myFormMachine';
-
+// import formMachine from './machines/myFormMachine';
+import formMachine from '../../machines/myFormMachine';
 
 import { useForm } from 'react-hook-form';
 
@@ -43,28 +43,37 @@ const MultiStepForm = () => {
       <form onSubmit={handleSubmit(handleNext)}>
         <div class="p-3">
         <div class="p-2">
-          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name:</label>
+            <label
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              for="FirstName">First Name:</label>
           <input
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            type="text"
+              type="text"
+            id="FirstName"
             {...register('FirstName', { required: 'Name is required' })}
           />
           {errors.name && <span>{errors.name.message}</span>}
           </div>
           <div class="p-2">
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
+            <label
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            for="LastName">Last Name:</label>
           <input
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            type="text"
+              type="text"
+            id="LastName"
             {...register('LastName', { required: 'Name is required' })}
           />
           {errors.name && <span>{errors.name.message}</span>}
         </div>
         <div class="p-2">
-          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
+            <label
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            for="email">Email:</label>
           <input
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            type="email"
+              type="email"
+            id="email"
             {...register('email', {
               required: 'Email is required',
               pattern: {
@@ -79,9 +88,8 @@ const MultiStepForm = () => {
         <button
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           type="submit"
-          disabled={!formState.isValid}>
-          Next
-        </button>
+          disabled={!formState.isValid}
+        >Next</button>
       </form>
     </div>
   );
@@ -108,6 +116,7 @@ const renderSurvey = () => {
     <div>
       <h2
         class="text-4xl font-extrabold dark:text-white text-center"
+        data-testid="survey-title"
       >Survey</h2>
       <form onSubmit={handleSubmit(handleSurvey)}>
         <div class="p-3">
@@ -152,11 +161,11 @@ const renderSurvey = () => {
         </div>
       </form>
     </div>
-  );
-};
+    );
+  };
 
 
-//confirmation component
+  //confirmation component
   const renderConfirmation = () => {
     console.log(current.context);
     console.log(current.context.survey.data);
