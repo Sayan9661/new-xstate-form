@@ -36,12 +36,13 @@ const MultiStepForm = () => {
 
 //user info component
   const renderUserInfo = () => (
-    <div class="flex items-center">
+    <div>
       <h2
-      class="text-4xl font-extrabold dark:text-white"
+      class="text-4xl font-extrabold dark:text-white text-center"
       >User Information</h2>
       <form onSubmit={handleSubmit(handleNext)}>
-        <div>
+        <div class="p-3">
+        <div class="p-2">
           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name:</label>
           <input
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -49,7 +50,9 @@ const MultiStepForm = () => {
             {...register('FirstName', { required: 'Name is required' })}
           />
           {errors.name && <span>{errors.name.message}</span>}
-          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
+          </div>
+          <div class="p-2">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
           <input
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             type="text"
@@ -57,7 +60,7 @@ const MultiStepForm = () => {
           />
           {errors.name && <span>{errors.name.message}</span>}
         </div>
-        <div>
+        <div class="p-2">
           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
           <input
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -71,6 +74,7 @@ const MultiStepForm = () => {
             })}
           />
           {errors.email && <span>{errors.email.message}</span>}
+        </div>
         </div>
         <button
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -103,14 +107,19 @@ const renderSurvey = () => {
   return (
     <div>
       <h2
-        class="text-4xl font-extrabold dark:text-white"
+        class="text-4xl font-extrabold dark:text-white text-center"
       >Survey</h2>
       <form onSubmit={handleSubmit(handleSurvey)}>
+        <div class="p-3">
         {questions.map((q, index) => (
-          <div key={index}>
+          <div
+            class="p-2"
+            key={index}>
             <label>{q.question}</label>
             {q.options.map((option, optionIndex) => (
-              <div key={optionIndex}>
+              <div
+                class="pt-1"
+                key={optionIndex}>
                 <input
                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   type="radio"
@@ -126,18 +135,21 @@ const renderSurvey = () => {
           </div>
         ))}
         {errors.survey && <span>{errors.survey.message}</span>}
-        <button
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          type="button"
-          onClick={handlePrevious}>
-          Previous
+        <div class="flex flex-row p-2">
+            <button
+            class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
+            type="button"
+            onClick={handlePrevious}>
+            Previous
         </button>
-        <button
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          type="submit"
-          disabled={!formState.isValid}>
+            <button
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            type="submit"
+            disabled={!formState.isValid}>
           Next
-        </button>
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
@@ -157,7 +169,8 @@ const renderSurvey = () => {
         <p>Name: {current.context.LastName}</p>
         <p>Email: {current.context.email}</p>
         <p>Survey:</p> */}
-        <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
+        <div class="p-3">
+        <ul class="max-w-md space-y-2 text-gray-500 list-inside dark:text-gray-400">
           {Object.entries(current.context.survey).map((key, index) => (
             // console.log(key, index),
             <li
@@ -168,9 +181,12 @@ const renderSurvey = () => {
               {key[0]} : {key[1]}
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
+        <div class="flex flex-row p-2">
         <button
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+        class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
+
           type="button"
           onClick={handlePrevious}>
           Previous
@@ -180,7 +196,8 @@ const renderSurvey = () => {
           type="submit"
           onClick={handleSubmit(handleNext)} disabled={!formState.isValid}>
           Confirm
-        </button>
+          </button>
+          </div>
       </div>
       
     );
@@ -188,7 +205,7 @@ const renderSurvey = () => {
 
 
   return (
-    <div>
+    <div class="flex h-screen justify-center items-center">
       {current.matches('userInfo') && renderUserInfo()}
       {current.matches('survey') && renderSurvey()}
       {current.matches('confirmation') && renderConfirmation()}
